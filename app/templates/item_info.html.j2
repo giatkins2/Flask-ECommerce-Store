@@ -1,0 +1,36 @@
+{% extends 'base.html.j2'%}
+
+{% block title %}
+ItemInfo
+{% endblock %}
+{% block content %}
+<br>
+<br>
+<div class="columns is-mobile is-centered">
+    <div class="column is-half">
+        <div class="card">
+            <div class="card-image">
+            <figure class="image is-4by3">
+                <img src="{{item.img}}" alt="plant">
+            </figure>
+            </div>
+            <div class="card-content ">
+                <div class="media-content">
+                <p class="title is-4">{{item.name}}</p>
+                <p class="subtitle is-6">{{item.price}}</p>
+                </div>
+            </div>
+            <div class="content">
+                {{item.desc}}
+            </div>
+            <footer class="card-footer">
+                {% if item  %}
+                <a href="{{url_for('shop.add_item', id=item.id)}}" class="button is-fullwidth is-success">Add</a>
+                {% endif %}
+            </footer>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.j2'%}
+
+{% block title %}
+Cart
+{% endblock %}
+{% block content %}
+<br>
+<br>
+<h1>{{current_user.first_name}}'s shopping cart</h1>
+<br>
+{% for item in current_user.cart %}
+    <article class="media">
+        <figure class="media-left">
+            <p class="image is-128x128">
+                <img src="{{item.img}}" alt="plant">
+            </p>
+        </figure>
+        <div class="media-content">
+            <div class="content">
+            <p>
+                <strong>{{item.name}}</strong> <small>$ {{item.price}}</small> 
+                <br>
+            </p>
+            </div>
+            <nav class="level is-mobile">
+            <div class="level-left">
+                <a class="level-item" href="{{url_for('shop.remove_item', id=item.id)}}">
+                <span class="icon is-small"><i class="fa-solid fa-cart-xmart delete"></i></span>&nbsp;<small>Remove</small>
+                </a>
+            </div>
+            </nav>
+        </div>
+    </article>
+{% endfor %}
+<br>
+<br>
+<div class="field is-grouped">
+    <p class="control">
+        <button class="button is-success">
+        <a href="#">Checkout</a>
+        </button>
+        <button class="button is-danger">
+        <a href="{{url_for('shop.clear_cart')}}">Delete all items?</a>
+        </button>
+    </p>
+</div>
+
+
+{% endblock %}
